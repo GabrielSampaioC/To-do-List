@@ -44,6 +44,7 @@
     font-weight: 500;
     border-style: none;
     font-size: 1em;
+    cursor: pointer;
 }
 .lista-table{
     padding: 2em 0;
@@ -92,6 +93,7 @@ table{
     border-radius: 5px;
     padding: 5px;
     border-style: none;
+    cursor: pointer;
 }
 .btn-remove-img{
     width: 25px;
@@ -100,3 +102,7 @@ table{
     display: flex;
 
 }
+
+/* #botao-remove{
+    display: none;
+} */
