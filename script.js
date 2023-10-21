@@ -20,7 +20,6 @@ function MontaTarefa() {
         const botoes = document.createElement("td");
 
         montaTarefa.innerHTML = `<td class="lista-table-resposta">${input.value}</td>`;
-        montaTarefa.classList.add("lista-table-resposta");
 
         dataTarefa.innerHTML = `<td class="lista-table-data">${now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear()}</td>`;
         
