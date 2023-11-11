@@ -244,3 +244,10 @@ table {
     margin: 1em auto;
   }
 }
+::-webkit-scrollbar{
+  height: 2px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--cinza-claro);
+}
