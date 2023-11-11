@@ -2,6 +2,7 @@ const botaoAdiciona = document.querySelector("#btn-adiciona-tarefa");
 const input = document.querySelector("#input");
 const corpoTabela = document.querySelector(".tabela-body");
 
+
 now = new Date;
 let tarefas = [];
 
@@ -16,7 +17,7 @@ function validaTarefa() {
         input.classList.remove("error");
     } else {
         input.classList.add("error");
-        console.log("Tarefa Removida");
+        console.log("Tarefa Vazia");
     }
 }
 
@@ -56,29 +57,47 @@ function RemoveTarefa(linha) {
 function renderizaTarefas() {
     corpoTabela.innerHTML = "";
 
-
     tarefas.forEach((tarefa, index) => {
         const lista = document.createElement("div");
         const montaTarefa = document.createElement("td");
         const dataTarefa = document.createElement("td");
         const andamentoTarefa = document.createElement("td");
         const botoes = document.createElement("td");
-        lista.classList.add("flex")
 
         montaTarefa.innerHTML = `<div class="lista-table-resposta">${tarefa.nome}</div>`;
         dataTarefa.innerHTML = `<td class="lista-table-data">${tarefa.data}</td>`;
-        andamentoTarefa.innerHTML = `<td class="lista-table-opcoes">
+
+        andamentoTarefa.innerHTML = `<td class="lista-table-seletores">
             <select class="lista-table-opcoes">
                 <option ${tarefa.andamento === "Concluida" ? "selected" : ""}>Concluida</option>
-                <option ${tarefa.andamento === "Em andamento" ? "selected" : ""}>Executando</option>
-                <option ${tarefa.andamento === "Desisto" ? "selected" : ""}>Desisto</option>
+                <option ${tarefa.andamento === "Executando" ? "selected" : ""}>Executando</option>
             </select>
         </td>`;
         const select = andamentoTarefa.querySelector("select");
 
+        
+        if (tarefa.andamento === "Concluida") {
+            montaTarefa.classList.add("conclui");
+            lista.classList.add("bg");
+            select.classList.remove("lista-table-opcoes");
+            select.classList.add("lista-table-opcoes-concluidas");
+        }
 
         select.addEventListener("change", () => {
             tarefa.andamento = select.value;
+
+            
+            if (tarefa.andamento === "Concluida") {
+                montaTarefa.classList.add("conclui");
+                lista.classList.add("bg");
+                select.classList.remove("lista-table-opcoes");
+                select.classList.add("lista-table-opcoes-concluidas");
+            } else {
+                montaTarefa.classList.remove("conclui");
+                lista.classList.remove("bg");
+                select.classList.remove("lista-table-opcoes-concluidas");
+                select.classList.add("lista-table-opcoes");
+            }
 
             localStorage.setItem('tarefas', JSON.stringify(tarefas));
         });
@@ -94,6 +113,7 @@ function renderizaTarefas() {
         lista.appendChild(dataTarefa);
         lista.appendChild(andamentoTarefa);
         lista.appendChild(botoes);
+        lista.classList.add("flex");
 
         const botaoRemove = lista.querySelector(".btn-remove-tarefa");
         botaoRemove.addEventListener("click", () => {
