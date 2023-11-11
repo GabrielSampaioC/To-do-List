@@ -35,7 +35,7 @@ function MontaTarefa() {
         tarefas.push({
             nome: input.value,
             data: now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
-            andamento: "Em andamento"
+            andamento: "Executando"
         });
 
         localStorage.setItem('tarefas', JSON.stringify(tarefas));
@@ -56,19 +56,21 @@ function RemoveTarefa(linha) {
 function renderizaTarefas() {
     corpoTabela.innerHTML = "";
 
+
     tarefas.forEach((tarefa, index) => {
-        const lista = document.createElement("tr");
+        const lista = document.createElement("div");
         const montaTarefa = document.createElement("td");
         const dataTarefa = document.createElement("td");
         const andamentoTarefa = document.createElement("td");
         const botoes = document.createElement("td");
+        lista.classList.add("flex")
 
         montaTarefa.innerHTML = `<div class="lista-table-resposta">${tarefa.nome}</div>`;
         dataTarefa.innerHTML = `<td class="lista-table-data">${tarefa.data}</td>`;
         andamentoTarefa.innerHTML = `<td class="lista-table-opcoes">
             <select class="lista-table-opcoes">
                 <option ${tarefa.andamento === "Concluida" ? "selected" : ""}>Concluida</option>
-                <option ${tarefa.andamento === "Em andamento" ? "selected" : ""}>Em andamento</option>
+                <option ${tarefa.andamento === "Em andamento" ? "selected" : ""}>Executando</option>
                 <option ${tarefa.andamento === "Desisto" ? "selected" : ""}>Desisto</option>
             </select>
         </td>`;

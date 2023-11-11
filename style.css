@@ -15,15 +15,17 @@
    --cinza-claro: #ededed;
    --roxo: #800080;
    --wallpaper-branco: #f5f5f5;
+   --background: #262626;
+   --azul:#8574eb;
 }
 
 
 .lista-principal{
     height: 100vh;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     display: flex;
-    background:#262626;
+    background-color: var(--background);
 }
 .lista-container{
     display: flex;
@@ -36,24 +38,24 @@
 .lista-input{
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid var(--branco);
     width: 100%;
     font-size: 1em;
-    font-weight: 600;
-    outline: none;
-    background: var(--cinza-claro);
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 3px 10px;
+    background: var(--background);
+    color: var(--branco);
+    height: 40px;
 
 }
 .lista-btn{
     padding: 10px;
     border-radius: 5px;
-    background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%);
+    background: var(--azul);
     color: var(--branco);
     font-weight: 500;
     border-style: none;
     font-size: 1em;
     cursor: pointer;
-    border: 1px solid var(--branco);
 }
 
 .lista-table{
@@ -61,24 +63,25 @@
 }
 
 .lista-table-resposta{
-    width: 100px;
-    overflow-x: auto;  
+    overflow-x: auto; 
 }
 
 
 .lista-table-titulo{
     padding: 5px 1em;
     font-weight: 500;
-    background: var(--cinza-claro);
+    color: var(--branco);
 }
 
 
 td{
-    border: 1px solid var(--cinza-claro);
     padding: 10px;
     animation: animacao-add-lista-linha 0.5s ease-out;
     font-size: 1em;
     font-weight: 300;
+    color: var(--branco);
+    width: 100px;
+    align-items: center;
 }
 
 table{
@@ -87,19 +90,25 @@ table{
     border-collapse: collapse;
 }
 
+.lista-table-titulos,.flex{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
 
 .container{
-    background: var(--wallpaper-branco);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
     text-align: center;
     align-items: center;
     height: 600px;
     padding: 2em;
-    box-shadow: 1px 1px 5px #00000061;
+    width: 80%;
 }
 
+.container-titulo{
+  color: var(--branco);
+  font-weight: 500;
+}
 
 
 .lista-tarefas{
@@ -191,15 +200,27 @@ table{
   }
 
 @media screen and (max-width:768px) {
-  .lista-table-resposta,.lista-table-data,.lista-table-opcoes{
-    width: 50px;
+  .lista-table-resposta{
+    width: 60px;
   }
   .container{
     width: 100%;
-    padding:0;
-    margin: 0 20px;
+    padding: 0;
   }
+  .lista-table-titulo{
+    padding: 0;
+    margin: 1em;
+  }
+
   .lista-container{
     padding: 1em;
+  }
+  td{
+    width: auto;
+    padding: 1em 0;
+    margin: auto
+  }
+  .flex{
+    justify-content: space-around;
   }
 }
