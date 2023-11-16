@@ -71,36 +71,12 @@ function renderizaTarefas() {
             <select class="lista-table-opcoes">
                 <option ${tarefa.andamento === "Concluida" ? "selected" : ""}>Concluida</option>
                 <option ${tarefa.andamento === "Executando" ? "selected" : ""}>Executando</option>
+                <option ${tarefa.andamento === "Em aberto" ? "selected" : ""}>Em aberto</option>
             </select>
         </td>`;
         const select = andamentoTarefa.querySelector("select");
 
-        
-        if (tarefa.andamento === "Concluida") {
-            montaTarefa.classList.add("conclui");
-            lista.classList.add("bg");
-            select.classList.remove("lista-table-opcoes");
-            select.classList.add("lista-table-opcoes-concluidas");
-        }
 
-        select.addEventListener("change", () => {
-            tarefa.andamento = select.value;
-
-            
-            if (tarefa.andamento === "Concluida") {
-                montaTarefa.classList.add("conclui");
-                lista.classList.add("bg");
-                select.classList.remove("lista-table-opcoes");
-                select.classList.add("lista-table-opcoes-concluidas");
-            } else {
-                montaTarefa.classList.remove("conclui");
-                lista.classList.remove("bg");
-                select.classList.remove("lista-table-opcoes-concluidas");
-                select.classList.add("lista-table-opcoes");
-            }
-
-            localStorage.setItem('tarefas', JSON.stringify(tarefas));
-        });
 
         botoes.innerHTML = `<td class="lista-table-botoes">
             <div>
@@ -118,6 +94,38 @@ function renderizaTarefas() {
         const botaoRemove = lista.querySelector(".btn-remove-tarefa");
         botaoRemove.addEventListener("click", () => {
             RemoveTarefa(lista);
+        });
+        const imgBotaoRemove = botaoRemove.querySelector(".btn-remove-img");
+
+        if (tarefa.andamento === "Concluida") {
+            montaTarefa.classList.add("conclui");
+            lista.classList.add("bg");
+            select.classList.remove("lista-table-opcoes");
+            select.classList.add("lista-table-opcoes-concluidas");
+            botaoRemove.classList.add("verde");
+            imgBotaoRemove.src = "img/TaskDoneIcon.svg";
+        }
+        
+
+        select.addEventListener("change", () => {
+            tarefa.andamento = select.value;
+
+            if (tarefa.andamento === "Concluida") {
+                montaTarefa.classList.add("conclui");
+                lista.classList.add("bg");
+                select.classList.remove("lista-table-opcoes");
+                select.classList.add("lista-table-opcoes-concluidas");
+                botaoRemove.classList.add("verde")
+                imgBotaoRemove.src = "img/TaskDoneIcon.svg";
+            } else {
+                montaTarefa.classList.remove("conclui");
+                lista.classList.remove("bg");
+                select.classList.remove("lista-table-opcoes-concluidas");
+                select.classList.add("lista-table-opcoes");
+                botaoRemove.classList.remove("verde");
+                imgBotaoRemove.src = "img/lixeira.svg";            }
+
+            localStorage.setItem('tarefas', JSON.stringify(tarefas));
         });
     });
 }

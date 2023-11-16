@@ -96,7 +96,6 @@ td {
 table {
   width: 100%;
   border-spacing: 0;
-  border-collapse: collapse;
 }
 
 .lista-table-titulos,
@@ -125,6 +124,7 @@ table {
 .container-titulo {
   color: var(--branco);
   font-weight: 500;
+  margin: 20px 0;
 }
 
 .lista-tarefas {
@@ -250,4 +250,7 @@ table {
 }
 ::-webkit-scrollbar-thumb{
   background-color: var(--cinza-claro);
+}
+.verde{
+  background-color: #75ca75;
 }
